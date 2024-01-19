@@ -59,8 +59,8 @@ const Home = () => {
           <directionalLight position={[1, 1, 1]} intensity={2} />
           <ambientLight intensity={0.3} />
           <hemisphereLight skyColor="#b1e1ff" groundColor="#000000" />
-          <Bird />
-          <Sky />
+          <Bird isRotating={isRotating}/>
+          <Sky isRotating={isRotating}/>
           <Island
             isRotating={isRotating}
             setIsRotating={setIsRotating}
