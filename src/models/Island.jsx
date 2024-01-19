@@ -4,9 +4,19 @@ import { useFrame, useThree } from "@react-three/fiber";
 import islandScene from "../assets/3d/island.glb";
 import { a } from "@react-spring/three";
 
-const Island = (props) => {
+const Island = ({ isRotating, setIsRotating, ...props }) => {
   const islandRef = useRef();
+  const { gl, viewport } = useThree();
+  const lastX = useRef(0);
+  const rotatingSpeed = useRef(0);
+  const dampingFactor = 0.95;
   const { nodes, materials } = useGLTF(islandScene);
+
+  const handlePointerDown = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    setIsRotating(true);
+  };
   return (
     <a.group {...props} dispose={null}>
       <mesh
@@ -40,6 +50,5 @@ const Island = (props) => {
     </a.group>
   );
 };
-
 
 export default Island;
