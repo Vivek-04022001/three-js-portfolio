@@ -13,6 +13,7 @@ Popup
 }
 const Home = () => {
   const [isRotating, setIsRotating] = useState(false);
+  const [currentStage, setCurrentStage] = useState(1);
   const adjustIslandForScreenSize = () => {
     let screenScale = null;
     let screenSize = [0, -6.5, -43];
@@ -47,6 +48,7 @@ const Home = () => {
 
   return (
     <section className="relative h-screen w-full ">
+      
       <Canvas
         className={`h-screen w-full bg-transparent 
         ${isRotating ? "cursor-grabbing" : "cursor-grab"}
@@ -60,18 +62,18 @@ const Home = () => {
           <Bird />
           <Sky />
           <Island
-            position={islandPosition}
-            scale={islandScale}
-            rotation={islandRotation}
-            setIsRotating={setIsRotating}
             isRotating={isRotating}
+            setIsRotating={setIsRotating}
+            setCurrentStage={setCurrentStage}
+            position={islandPosition}
+            rotation={[0.1, 4.7077, 0]}
+            scale={islandScale}
           />
-          <Plane 
-          planePosition = {planePosition}
-          planeScale = { planeScale}
-          isRotating= {isRotating}
-          rotation={[0,20,0]}
-          
+          <Plane
+            planePosition={planePosition}
+            planeScale={planeScale}
+            isRotating={isRotating}
+            rotation={[0, 20, 0]}
           />
         </Suspense>
       </Canvas>
